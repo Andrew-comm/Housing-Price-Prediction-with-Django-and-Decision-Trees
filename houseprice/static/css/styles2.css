@@ -1,0 +1,30 @@
+/* Appliquer un style au corps de la page */
+body {
+    background-image: url('assets/img/02C.jpg'); /* Remplacez par le chemin de votre image */
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+/* Style pour le conteneur du formulaire */
+.form-container {
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Style pour le bouton */
+.btn-success {
+    background-color: #28a745; /* Couleur de fond du bouton */
+    color: #fff; /* Couleur du texte du bouton */
+    border: none;
+}
+
+.btn-success:hover {
+    background-color: #218838; /* Couleur de fond du bouton au survol */
+}
