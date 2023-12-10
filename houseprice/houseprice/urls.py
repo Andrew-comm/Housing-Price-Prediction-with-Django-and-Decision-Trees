@@ -22,12 +22,15 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     #path('', include('house.urls')),
     path('', views.home),
     path('predict/', views.predict),
     path('predict/result/',views.result, name='result'),
+    path('properties/', views.property_list, name='property_list'),    
+    path('add_property/', views.add_property, name='add_property'),
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

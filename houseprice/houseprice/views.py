@@ -1,8 +1,11 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.tree import DecisionTreeRegressor
 import numpy as np
+from house.models import Property
+from house.forms import PropertyForm
+
 
 def home(request):
     return render(request, 'index.html')
@@ -12,7 +15,7 @@ def predict(request):
 
 def result(request):
     data = pd.read_csv("cleaning_2.csv")
-    data['price'] = data['price'].apply(lambda x: int(x))
+    data['price'] = data['price'].astype(float)  # Convert 'price' column to float
     prices = data['price']
     features = data[['bedrooms', 'bathrooms', 'sqft_living', 'sqft_lot', 'floors', 'waterfront', 'view', 'condition', 'sqft_above', 'sqft_basement', 'Quality', 'city']]
     X_train, X_test, Y_train, Y_test = train_test_split(features, prices, test_size=0.20, random_state=42)
@@ -51,3 +54,24 @@ def result(request):
         return render(request, 'f.html', {"result2": price})
 
     return render(request, 'f.html')
+
+
+
+def property_list(request):
+    properties = Property.objects.all()
+    return render(request, 'index.html', {'properties': properties})
+
+
+def add_property(request):
+    if request.method == 'POST':
+        form = PropertyForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('property_list')
+    else:
+        form = PropertyForm()
+    return render(request, 'add_property.html', {'form': form})
+# views.py
+
+
+

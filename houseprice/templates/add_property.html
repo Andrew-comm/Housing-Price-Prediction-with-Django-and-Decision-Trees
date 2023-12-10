@@ -1,0 +1,19 @@
+{% block content %}
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card mt-5">
+                    <div class="card-body">
+                        <h2 class="card-title text-center">Add New Property</h2>
+                        <form method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            {{ form.as_p }}
+                            <button class="btn btn-primary" type="submit">Save Property</button>
+                        </form>
+                        <a href="{% url 'property_list' %}" class="btn btn-secondary mt-3">Cancel</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
